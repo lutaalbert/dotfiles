@@ -1,8 +1,0 @@
-# Stop screen from going blank
-xset s off
-xset -dpms
-xset s noblank
-
-# Configure external monitor(s) position
-xrandr --output HDMI-A-0 --left-of eDP
-
