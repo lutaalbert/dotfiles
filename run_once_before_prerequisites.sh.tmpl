@@ -1,0 +1,19 @@
+#!/bin/bash
+
+{{ if eq .chezmoi.os "darwin" -}}
+# install homebrew
+if [[ ! "$(which brew)" == */bin/brew ]]; then
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# install age
+if [[ ! "$(which age)" == */bin/age ]]; then
+	brew install age
+fi
+{{ end -}}
+
+if [ ! -f "${HOME}/.config/chezmoi/key.txt" ]; then
+    mkdir -p "${HOME}/.config/chezmoi"
+    chezmoi age decrypt --output "${HOME}/.config/chezmoi/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"
+    chmod 600 "${HOME}/.config/chezmoi/key.txt"
+fi
