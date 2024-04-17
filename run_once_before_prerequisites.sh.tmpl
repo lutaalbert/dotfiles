@@ -2,12 +2,12 @@
 
 {{ if eq .chezmoi.os "darwin" -}}
 # install homebrew
-if [[ ! "$(which brew)" == */bin/brew ]]; then
+if ! command -v brew > /dev/null; then
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 # install age
-if [[ ! "$(which age)" == */bin/age ]]; then
+if ! command -v age > /dev/null; then
 	brew install age
 fi
 {{ end -}}
