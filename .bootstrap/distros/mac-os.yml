@@ -1,0 +1,19 @@
+---
+- name: Install packages
+  community.general.homebrew:
+    name:
+      - git
+      - fnm
+      - neovim
+      - zoxide
+      - fzf
+      - lsd
+      - htop
+      - bat
+      - fd
+      - zsh-syntax-highlighting
+      - zsh-autosuggestions
+      - powerlevel10k
+      - ripgrep
+      - python
+

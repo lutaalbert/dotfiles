@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Include every file from .bootstrap dir that should trigger an update when changed
+
+# .bootstrap/main.yml hash: {{ include ".bootstrap/main.yml" | sha256sum }}
+# .bootstrap/distros/mac-os.yml hash: {{ include ".bootstrap/distros/mac-os.yml" | sha256sum }}
+
+if command -v ansible-playbook > /dev/null; then
+    ansible-playbook {{ joinPath .chezmoi.sourceDir ".bootstrap/main.yml" | quote }} --ask-become-pass --diff
+fi
+

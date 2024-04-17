@@ -1,0 +1,42 @@
+---
+- name: Machine setup
+  hosts: localhost
+  connection: local
+  gather_facts: true
+  vars:
+    should_be_root: "{{ False if ansible_os_family == 'Darwin' else True }}"
+    node_version: "v20"
+
+  tasks:
+    - name: Configure MacOS
+      import_tasks: ./distros/mac-os.yml
+      when: ansible_facts['os_family'] == "Darwin"
+      become: "{{ should_be_root }}"
+
+    - name: Check if Node is installed
+      ansible.builtin.shell: "if [[ -n \"$(fnm list | grep {{ node_version }})\" ]]; then echo \"true\"; else echo \"false\"; fi"
+      register: is_node_installed
+      changed_when: is_node_installed.stdout == "false"
+
+    - name: Install Node
+      ansible.builtin.shell: "eval \"$(fnm env --corepack-enabled)\" && fnm install {{ node_version }} && fnm default {{ node_version }}"
+      when: is_node_installed.stdout == "false"
+
+    - name: Check if Yarn is installed
+      ansible.builtin.shell: "eval \"$(fnm env)\" && if command -v yarn > /dev/null; then echo \"true\"; else echo \"false\"; fi"
+      register: is_yarn_installed
+      changed_when: is_yarn_installed.stdout == "false"
+
+    - name: Install Yarn
+      ansible.builtin.shell: "eval \"$(fnm env)\" && corepack install -g yarn"
+      when: is_yarn_installed.stdout == "false"
+
+    - name: Check if Pnpm is installed
+      ansible.builtin.shell: "eval \"$(fnm env)\" && if command -v pnpm > /dev/null; then echo \"true\"; else echo \"false\"; fi"
+      register: is_pnpm_installed
+      changed_when: is_pnpm_installed.stdout == "false"
+
+    - name: Install Pnpm
+      ansible.builtin.shell: "eval \"$(fnm env)\" && corepack install -g pnpm"
+      when: is_pnpm_installed.stdout == "false"
+

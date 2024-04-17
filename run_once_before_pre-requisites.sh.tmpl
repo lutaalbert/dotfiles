@@ -12,6 +12,11 @@ brew update
 if ! command -v age > /dev/null; then
 	brew install age
 fi
+
+# install ansible
+if ! command -v ansible > /dev/null; then
+	brew install ansible
+fi
 {{ end -}}
 
 # decrypt private age key by passphrase
@@ -19,4 +24,8 @@ if [ ! -f "${HOME}/.config/chezmoi/key.txt" ]; then
     mkdir -p "${HOME}/.config/chezmoi"
     chezmoi age decrypt --output "${HOME}/.config/chezmoi/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"
     chmod 600 "${HOME}/.config/chezmoi/key.txt"
+fi
+
+if command -v ansible-playbook > /dev/null; then
+    ansible-playbook {{ joinPath .chezmoi.sourceDir ".bootstrap/main.yml" | quote }} --ask-become-pass --diff
 fi
