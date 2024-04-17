@@ -14,6 +14,7 @@ if ! command -v age > /dev/null; then
 fi
 {{ end -}}
 
+# decrypt private age key by passphrase
 if [ ! -f "${HOME}/.config/chezmoi/key.txt" ]; then
     mkdir -p "${HOME}/.config/chezmoi"
     chezmoi age decrypt --output "${HOME}/.config/chezmoi/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"
