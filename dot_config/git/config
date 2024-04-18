@@ -1,0 +1,20 @@
+[user]
+	name = Albert Luta
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[fetch]
+	prune = true
+
+[diff]
+	colorMoved = zebra
+
+[include]
+	path = profiles/personal
+
+[includeIf "gitdir:~/projects/work/"]
+	path = profiles/work
