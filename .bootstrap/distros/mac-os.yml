@@ -1,5 +1,9 @@
 ---
-- name: Install packages
+- name: Tap Homebrew repositories
+  community.general.homebrew_tap:
+    name: homebrew/cask-fonts
+
+- name: Install brews
   community.general.homebrew:
     name:
       - git
@@ -17,3 +21,21 @@
       - ripgrep
       - python
 
+- name: Install casks
+  community.general.homebrew_cask:
+    name:
+      - firefox
+      - brave-browser
+      - google-chrome
+      - microsoft-edge
+      - visual-studio-code
+      - alacritty
+      - swiftdefaultappsprefpane
+      - bitwarden
+      - adobe-acrobat-reader
+      - microsoft-teams
+      - microsoft-outlook
+      - microsoft-word
+      - microsoft-excel
+      - microsoft-powerpoint
+      - font-hack-nerd-font # needs "homebrew/cask-fonts" tap
