@@ -4,7 +4,6 @@
 #fi
 
 # take a look into:
-# - ssh-agent
 # - gpg-agent
 # - vi mode
 
@@ -22,6 +21,7 @@ source $HOME/.config/zsh/tools/history.zsh
 source $HOME/.config/zsh/tools/completion.zsh
 source $HOME/.config/zsh/tools/fzf.zsh
 source $HOME/.config/zsh/tools/fnm/init.zsh
+source $HOME/.config/zsh/tools/ssh.zsh
 
 # command suggestions based on history
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
