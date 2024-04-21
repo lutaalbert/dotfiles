@@ -20,6 +20,7 @@
       - powerlevel10k
       - ripgrep
       - python
+      - chezmoi
 
 - name: Install casks
   community.general.homebrew_cask:
