@@ -1,9 +1,11 @@
 # Dotfiles
 
-- the correct work email + ssh + gpg for git are automatically applied when working under **~/projects/work**
+- the correct work email + ssh auth + ssh sign for git are automatically applied when working under **~/projects/work**
+- ssh auth will be remembered after first use
+- to remember ssh sign, you have to add it manually to the agent - `ssh-add ~/.ssh/<personal/work>-sign_ed25519`
 
-TODO:
-- add chezmoi zsh completions
+#### TODO:
+
 - automate: fix ctrl + space for auto-suggestion - keyboard shortcuts -> input sources (change language) - look into "defaults write ..." configs
 - shift + tab when suggesting files/dirs when doing cd is not working
 - ctrl + r invert where the input is (from bottom to top)
