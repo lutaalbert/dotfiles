@@ -38,6 +38,9 @@ zle_highlight=('paste:none')
 # colors for files and directories
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
+# recognise parent directory ("../") as a dir
+zstyle ':completion:*' special-dirs true
+
 # use cache to generate completions based on user history
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.zcompcache"
