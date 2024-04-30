@@ -21,6 +21,9 @@
       - ripgrep
       - python
       - chezmoi
+        #- docker - currently a bug: https://github.com/ansible-collections/community.general/issues/8274
+      - docker-compose
+      - colima
 
 - name: Install casks
   community.general.homebrew_cask:
