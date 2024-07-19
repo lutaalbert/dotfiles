@@ -6,7 +6,6 @@
 
 #### TODO:
 
-- add docker homebrew formulae when [8274](https://github.com/ansible-collections/community.general/issues/8274) is fixed
 - automate: fix ctrl + space for auto-suggestion - keyboard shortcuts -> input sources (change language) - look into "defaults write ..." configs
 - shift + tab when suggesting files/dirs when doing cd is not working
 - ctrl + r invert where the input is (from bottom to top)

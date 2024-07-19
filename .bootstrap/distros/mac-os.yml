@@ -1,7 +1,10 @@
 ---
-- name: Tap Homebrew repositories
-  community.general.homebrew_tap:
-    name: homebrew/cask-fonts
+# In case we'll need to tap repos in the future
+#
+# (font-hack-nerd-font was moved from tap to main homebrew, so tapping is unnecessary)
+# - name: Tap Homebrew repositories
+#   community.general.homebrew_tap:
+#     name: homebrew/cask-fonts
 
 - name: Install brews
   community.general.homebrew:
@@ -21,7 +24,7 @@
       - ripgrep
       - python
       - chezmoi
-        #- docker - currently a bug: https://github.com/ansible-collections/community.general/issues/8274
+      - docker
       - docker-compose
       - colima
 
@@ -42,4 +45,4 @@
       - microsoft-word
       - microsoft-excel
       - microsoft-powerpoint
-      - font-hack-nerd-font # needs "homebrew/cask-fonts" tap
+      - font-hack-nerd-font
