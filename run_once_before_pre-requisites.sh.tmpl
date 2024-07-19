@@ -17,7 +17,7 @@ fi
 if ! command -v ansible > /dev/null; then
 	brew install ansible
 fi
-{{ end -}}
+{{- end }}
 
 # decrypt private age key by passphrase
 if [ ! -f "${HOME}/.config/chezmoi/key.txt" ]; then

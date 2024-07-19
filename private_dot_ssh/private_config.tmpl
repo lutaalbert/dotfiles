@@ -1,3 +1,7 @@
+{{ if eq .chezmoi.os "darwin" -}}
+Include ~/.colima/ssh_config 
+{{- end }}
+
 Host *
   IdentitiesOnly yes
   AddKeysToAgent yes
