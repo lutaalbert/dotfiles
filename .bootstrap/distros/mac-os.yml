@@ -56,3 +56,27 @@
 - name: Start colima service
   ansible.builtin.command: brew services start colima
   when: is_colima_service_started.stdout == "false"
+
+# community.general.osx_defaults doesn't currently work with dict: https://github.com/ansible-collections/community.general/issues/238
+- name: Check if ctrl+space keyboard shortcut is set
+  ansible.builtin.shell: "plutil -extract AppleSymbolicHotKeys.60.enabled raw -expect bool ~/Library/Preferences/com.apple.symbolichotkeys.plist"
+  register: is_ctrl_space_keyboard_shortcut_set
+  changed_when: is_ctrl_space_keyboard_shortcut_set.stdout == "true"
+
+- name: Disable ctrl+space shortcut
+  ansible.builtin.command: plutil -replace AppleSymbolicHotKeys.60.enabled -bool NO ~/Library/Preferences/com.apple.symbolichotkeys.plist
+  when: is_ctrl_space_keyboard_shortcut_set.stdout == "true"
+
+- name: Check if ctrl+option+space keyboard shortcut is set
+  ansible.builtin.shell: "plutil -extract AppleSymbolicHotKeys.61.enabled raw -expect bool ~/Library/Preferences/com.apple.symbolichotkeys.plist"
+  register: is_ctrl_option_space_keyboard_shortcut_set
+  changed_when: is_ctrl_option_space_keyboard_shortcut_set.stdout == "true"
+
+- name: Disable ctrl+option+space shortcut
+  ansible.builtin.command: plutil -replace AppleSymbolicHotKeys.61.enabled -bool NO ~/Library/Preferences/com.apple.symbolichotkeys.plist
+  when: is_ctrl_option_space_keyboard_shortcut_set.stdout == "true"
+
+- name: Reload user settings for the keyboard shortcut changes to take effect # Doesn't always work, a reboot is recommended
+  ansible.builtin.command: /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+  when: (is_ctrl_space_keyboard_shortcut_set.stdout == "true") or (is_ctrl_option_space_keyboard_shortcut_set.stdout == "true")
+
