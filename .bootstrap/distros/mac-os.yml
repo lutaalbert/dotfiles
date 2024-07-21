@@ -47,3 +47,12 @@
       - microsoft-powerpoint
       - font-hack-nerd-font
       - tableplus
+
+- name: Check if colima service is started
+  ansible.builtin.shell: "if [[ \"$(brew services list | grep colima | awk '{ print $2 }')\" == \"started\" ]]; then echo \"true\"; else echo \"false\"; fi"
+  register: is_colima_service_started
+  changed_when: is_colima_service_started.stdout == "false"
+
+- name: Start colima service
+  ansible.builtin.command: brew services start colima
+  when: is_colima_service_started.stdout == "false"
