@@ -8,6 +8,7 @@
 
 - shift + tab when suggesting files/dirs when doing cd is not working
 - ctrl + r invert where the input is (from bottom to top)
-- automate make zsh the default shell
+- give alacritty permissions to manage other apps - system settings -> privacy & security -> app management
 - fix: ssh signing keys are not added to ssh-agent when first used
+- automate make zsh the default shell (on linux)
 - improve README
