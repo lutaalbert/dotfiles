@@ -1,5 +1,5 @@
-import = ["~/.config/alacritty/themes/vs_code_dark_modern.toml", "~/.config/alacritty/fonts/hack.toml"]
-live_config_reload = true
+general.import = ["~/.config/alacritty/themes/vs_code_dark_modern.toml", "~/.config/alacritty/fonts/hack.toml"]
+general.live_config_reload = true
 working_directory = "None"
 
 [colors]
