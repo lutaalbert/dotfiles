@@ -27,6 +27,7 @@
       - docker
       - docker-compose
       - colima
+      - qemu
 
 - name: Install casks
   community.general.homebrew_cask:
